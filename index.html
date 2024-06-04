@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/title.png" type="images/png">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <script src="js/by.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+    <title>登录界面</title>
+</head>
+<body>
+
+    <form action="/login" class="login-form" method="post" style="display:block;">
+
+        <h1 class="login-title">登录</h1>
+
+        <div class="input-box">
+            <i class='bx bxs-user' ></i>
+            <input type="text" name="Username" placeholder="用户名" pattern="^[a-zA-Z][a-zA-Z0-9_]{4,15}$" oninvalid="setCustomValidity('字母开头，允许5-16字节，允许字母数字下划线');" oninput="setCustomValidity('');" required>
+        </div>
+
+        <div class="input-box">
+            <i class='bx bxs-lock' ></i>
+            <input type="password" name="Password" placeholder="密码" oninvalid="setCustomValidity('请输入密码');" oninput="setCustomValidity('');" required>
+        </div>
+
+        <div class="remember-forgot-box">
+            <label for="remember">
+                <input type="checkbox" id="remember">
+                记住密码
+            </label>
+            <a onclick="showForgetPasswordBox()">忘记密码</a>
+        </div>
+
+        <button class="login-button">登录</button>
+
+        <p class="register">
+            还没有账户?
+            <a onclick="showRegisterBox()">注册</a>
+        </p>
+
+    </form>
+    
+    <form action="/register" class="register-form" method="post" style="display:none;">
+
+        <h1 class="register-title">注册</h1>
+
+        <div class="input-box">
+            <i class='bx bxs-envelope'></i>
+            <input type="email" name="email" placeholder="邮箱" required>
+        </div>
+
+        <div class="input-box">
+            <i class='bx bxs-user' ></i>
+            <input type="text" name="Username" placeholder="用户名" pattern="^[a-zA-Z][a-zA-Z0-9_]{4,15}$" oninvalid="setCustomValidity('字母开头，允许5-16字节，允许字母数字下划线');" oninput="setCustomValidity('');" required>
+        </div>
+
+        <div class="input-box">
+            <i class='bx bxs-lock' ></i>
+            <input type="password" name="Password" placeholder="密码" oninvalid="setCustomValidity('请输入密码');" oninput="setCustomValidity('');" required>
+        </div>
+
+        <div class="input-box">
+            <i class='bx bxs-lock' ></i>
+            <input type="password" name="Passwordretrieve" placeholder="确认密码" oninvalid="setCustomValidity('请再次输入密码');" oninput="setCustomValidity('');" required>
+        </div>
+
+        <button class="register-button" onclick="checkPassword()">注册</button>
+
+        <p class="login">
+            已有账户
+            <a onclick="showLoginBox()">登录</a>
+        </p>
+
+    </form>
+
+    <form action="/retrieve" class="retrieve-form" method="post" style="display:none;">
+
+        <h1 class="retrieve-title">找回</h1>
+
+        <div class="input-box">
+            <i class='bx bxs-envelope'></i>
+            <input type="email" name="email" placeholder="邮箱" required>
+        </div>
+
+        <div class="input-box">
+            <i class='bx bxs-user' ></i>
+            <input type="text" name="Username" placeholder="用户名" pattern="^[a-zA-Z][a-zA-Z0-9_]{4,15}$" oninvalid="setCustomValidity('字母开头，允许5-16字节，允许字母数字下划线');" oninput="setCustomValidity('');" required>
+        </div>
+
+        <button class="retrieve-button">下一步</button>
+
+        <p class="back">
+            <a onclick="showLoginBox()">返回</a>
+        </p>
+
+    </form>
+
+    <footer class="mmm">
+        © 2024 <a href="/">xiaochen_er</a>
+        <br>
+        <a href="https://icp.gov.moe/?keyword=20242211" target="_blank">萌ICP备20242211号</a>
+        <br>
+        <a href='https://ipw.cn/ipv6webcheck/?site=mcpal.cn' title="本站支持IPv6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
+        <a href='https://ipw.cn/ssl/?site=mcpal.cn' title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
+    </footer>
+
+<script src="/js/sakura.js"></script>
+
+<script>
+    $("body").show();
+    $(".version").text(NProgress.version);
+    NProgress.start();
+    setTimeout(function () {
+        NProgress.done();
+        $(".fade").removeClass("out");
+    }, 1000);
+
+    $("#b-0").click(function () {
+        NProgress.start();
+    });
+    $("#b-40").click(function () {
+        NProgress.set(0.4);
+    });
+    $("#b-inc").click(function () {
+        NProgress.inc();
+    });
+    $("#b-100").click(function () {
+        NProgress.done();
+    });
+</script>
+</body>
+<script>
+    function showLoginBox() {
+    document.querySelector('.login-form').style.display = 'block';
+    document.querySelector('.register-form').style.display = 'none';
+    document.querySelector('.retrieve-form').style.display = 'none';
+    }
+
+    function showRegisterBox() {
+    document.querySelector('.login-form').style.display = 'none';
+    document.querySelector('.register-form').style.display = 'block';
+    document.querySelector('.retrieve-form').style.display = 'none';
+    }
+
+    function showForgetPasswordBox() {
+    document.querySelector('.login-form').style.display = 'none';
+    document.querySelector('.register-form').style.display = 'none';
+    document.querySelector('.retrieve-form').style.display = 'block';
+    }
+</script>
+</html>

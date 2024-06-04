@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>404 页面未找到</title>
+    <link rel="shortcut icon" href="/img/title.png" type="images/png">
+    <link rel="stylesheet" href="/css/404-style.css">
+    <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css">
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+</head>
+<body>
+<div class="for404">
+    <h1>哎呀！页面未找到</h1>
+    <p>您正在查找的页面可能已被删除、已更名，或者暂时无法使用。</p>
+    <p id="countdown"></p>
+    <a href="/" class="button" id="backButton">返回首页</a>
+    <!--    <a href="/map" class="button">地图页面</a>-->
+    <a class="button" id="waitButton">稍等一会</a>  <!-- 此按钮默认隐藏，等倒计时加载完成后显示 -->
+</div>
+<script>
+    // 设置倒计时的总秒数
+    var totalSeconds = 10;
+    var countdownElement = document.getElementById('countdown');
+    var waitButton = document.getElementById('waitButton');
+    var returnButton = document.querySelector('#backButton');
+    var isPaused = false;
+    var countdownInterval;
+
+    // 更新倒计时的函数
+    function updateCountdown() {
+        if (!isPaused) {
+            var secondsLeft = totalSeconds;
+            if (secondsLeft > 0) {
+                countdownElement.textContent ='系统将在' + secondsLeft + '秒后自动返回首页';
+                secondsLeft--;
+                totalSeconds = secondsLeft;
+            } else {
+                // 倒计时结束，执行重定向
+                window.location.href = '/';
+                clearInterval(countdownInterval);
+            }
+        }
+    }
+
+    // 切换等待/继续状态
+    function toggleWait() {
+        if (isPaused) {
+            // 恢复倒计时
+            isPaused = false;
+            waitButton.textContent = '稍等一会';
+            returnButton.textContent = '立即返回';
+        } else {
+            // 暂停倒计时
+            isPaused = true;
+            waitButton.textContent = '继续计时';
+        }
+    }
+
+    // 页面加载完成后开始倒计时
+    window.onload = function() {
+        // 显示初始倒计时
+        countdownElement.textContent = '系统将在' + totalSeconds + '秒后自动返回首页';
+        // 开始倒计时
+        countdownInterval = setInterval(updateCountdown, 1000);
+        // 显示稍等之前隐藏按钮
+        waitButton.style.display = 'inline-block';
+        // 初始时就设置按钮文字为“立即返回”
+        returnButton.textContent = '立即返回';
+        // 为等等按钮绑定点击事件
+        waitButton.addEventListener('click', toggleWait);
+    };
+</script>
+<script src="/js/sakura.js"></script>
+<script>
+    $("body").show();
+    $(".version").text(NProgress.version);
+    NProgress.start();
+    setTimeout(function () {
+        NProgress.done();
+        $(".fade").removeClass("out");
+    }, 1000);
+
+    $("#b-0").click(function () {
+        NProgress.start();
+    });
+    $("#b-40").click(function () {
+        NProgress.set(0.4);
+    });
+    $("#b-inc").click(function () {
+        NProgress.inc();
+    });
+    $("#b-100").click(function () {
+        NProgress.done();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+@font-face{
+    font-family: miaowu;
+    src: url(../fonts/方正喵呜体.ttf);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: miaowu;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://ip.hk47.cc/mt/img.php);
+    background-size: cover;
+    background-position: center;
+}
+.for404 {
+    background: rgba(42, 119, 143, 0.15);
+    border: 3px solid rgba(159, 9, 38, 0.15);
+    /*长度*/
+    padding: 80px;
+    /*圆角*/
+    border-radius: 16px;
+    /*模糊度*/
+    backdrop-filter: blur(10px);
+    text-align: center;
+    color: white;
+    /*宽度*/
+    width: 600px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.15);
+}
+h1 {
+    font-size: 55px;
+    margin-bottom: 50px;
+    white-space: nowrap;
+    text-align: center;
+    color: #d90d31;
+    margin-left: auto;
+    margin-right: auto;
+}
+p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    white-space: nowrap;
+    color: #1000ff;
+}
+#countdown {
+    font-size: 24px; /* 设置倒计时字体大小为24像素 */
+    margin-top: 20px;
+    color: red;
+}
+#waitButton {
+    display: none;
+}
+.button {
+    display: inline-block;
+    padding: 20px 20px;
+    margin: 30px;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(99, 149, 253, 0.9);
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: 0.3s;
+    /*
+    display: inline-block; // 设置元素以内联块级元素的形式显示，既能设置宽高，又能和其他元素并排显示
+    width: 100%; // 设置元素的宽度为其父元素宽度的100%
+    padding: 20px 20px; // 设置元素的内边距为上下左右各20像素
+    margin: 15px; // 设置元素的外边距为上下左右各15像素
+    background: rgba(150, 22, 120, 0.15); // 设置元素的背景色为半透明（alpha值为0.15）的RGB颜色值（150, 22, 120）
+    border: none; // 设置元素边框为无
+    border-radius: 10px; // 设置元素边框圆角半径为10像素
+    color: #ffffff; // 设置元素内的文本颜色为白色
+    font-size: 16px; // 设置元素内文本的字体大小为16像素
+    font-weight: 600; // 设置元素内文本的字体粗细为600（相当于加粗）
+    cursor: pointer; // 设置鼠标悬停在该元素上时显示的光标形状为手形指针，通常用于可点击的元素
+    transition: 0.3s; // 设置元素上任何可过渡的样式属性变化的过渡效果持续时间为0.3秒
+    */
+}
+.button:hover {
+    /*background-color: #0056b3;*/
+    background: rgba(99, 149, 253, 0.5);
+}
+.button {
+    margin-top: 15px;
+    font-size: 25px;
+}
